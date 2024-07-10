@@ -23,7 +23,7 @@ const HomePage = () => {
           Hello, {user.name}! You are logged in as a {user.role}.
         </Typography>
       )}
-      {!isLoggedIn && user ? (
+      {!isLoggedIn ? (
         <Button
           variant="contained"
           color="primary"
