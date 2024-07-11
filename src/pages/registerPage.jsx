@@ -25,7 +25,7 @@ const RegisterPage = () => {
   useEffect(() => {
     const fetchRoles = async () => {
       try {
-        const response = await API.get("/roles");
+        const response = await API.get("/users/roles");
         console.log("Fetched roles:", response.data); // Log the fetched roles
         setRoles(response.data);
       } catch (err) {
@@ -43,7 +43,7 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await API.post("/register", formData); // Ensure this is the correct backend URL
+      const response = await API.post("/users/register", formData); // Ensure this is the correct backend URL
       localStorage.setItem("token", response.data.token);
       navigate("/dashboard");
     } catch (err) {
