@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import {
   TextField,
   Button,
@@ -11,6 +10,7 @@ import {
   InputLabel,
   MenuItem,
 } from "@mui/material";
+import API from "../services/api";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -25,9 +25,7 @@ const RegisterPage = () => {
   useEffect(() => {
     const fetchRoles = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/users/roles"
-        );
+        const response = await API.get("/roles");
         console.log("Fetched roles:", response.data); // Log the fetched roles
         setRoles(response.data);
       } catch (err) {
@@ -45,10 +43,7 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/users/register",
-        formData
-      ); // Ensure this is the correct backend URL
+      const response = await API.post("/register", formData); // Ensure this is the correct backend URL
       localStorage.setItem("token", response.data.token);
       navigate("/dashboard");
     } catch (err) {
