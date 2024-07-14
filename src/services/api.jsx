@@ -7,6 +7,7 @@ console.log("Latest API URL from environment:", apiUrl);
 
 const API = axios.create({
   baseURL: apiUrl,
+  withCredentials: true, // This ensures cookies and credentials are sent with requests
 });
 
 API.interceptors.request.use((config) => {
