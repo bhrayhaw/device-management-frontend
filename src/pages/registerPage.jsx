@@ -26,7 +26,7 @@ const RegisterPage = () => {
     const fetchRoles = async () => {
       try {
         const response = await API.get("/users/roles");
-        console.log("Fetched roles:", response.data); // Log the fetched roles
+        console.log("Fetched roles:", response.data);
         setRoles(response.data);
       } catch (err) {
         console.error("Error fetching roles:", err);
