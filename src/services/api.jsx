@@ -1,9 +1,13 @@
 import axios from "axios";
 
+console.log("Script is running");
+
+const apiUrl = import.meta.env.VITE_APP_API_URL;
+console.log("API URL from environment:", apiUrl);
+
 const API = axios.create({
-  baseURL: import.meta.env.VITE_APP_API_URL,
+  baseURL: apiUrl,
 });
-console.log(import.meta.env.VITE_APP_API_URL);
 
 API.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
@@ -12,5 +16,7 @@ API.interceptors.request.use((config) => {
   }
   return config;
 });
+
+console.log("Axios instance created");
 
 export default API;
